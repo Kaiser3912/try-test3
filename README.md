@@ -1,1 +1,81 @@
-# try-test3
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sản Phẩm</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+<main>
+    <div class="container">
+        <h1>Quản Lý Sản Phẩm</h1>
+
+        <section id="add-product">
+            <h2>Thêm Sản Phẩm Mới</h2>
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="tenSP">Tên Sản Phẩm:</label>
+                    <input type="text" id="tenSP" required>
+                </div>
+                <div class="form-group">
+                    <label for="giaSP">Giá:</label>
+                    <input type="number" id="giaSP" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="loaiSP">Loại Sản Phẩm:</label>
+                    <select id="loaiSP" required>
+                        <option value="DienThoai">Điện Thoại</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="PhuKien">Phụ Kiện</option>
+                        <option value="Khac">Khác</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-add">Thêm Sản Phẩm</button>
+            </form>
+        </section>
+
+        <hr style="margin: 40px 0;">
+
+        <section id="product-list">
+            <h2>Danh Sách Sản Phẩm</h2>
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Tên SP</th>
+                        <th>Giá (VNĐ)</th>
+                        <th>Loại SP</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+    <script>
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const tenSP = document.getElementById('tenSP').value;
+            const giaSP = document.getElementById('giaSP').value;
+            const loaiSP = document.getElementById('loaiSP').value;
+            
+
+            const formattedGia = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(giaSP);
+
+            const tableBody = document.getElementById('productTableBody');
+            const newRow = tableBody.insertRow(); 
+
+            newRow.insertCell().textContent = tenSP;
+            newRow.insertCell().textContent = formattedGia;
+            newRow.insertCell().textContent = loaiSP;
+
+            document.getElementById('productForm').reset();
+        });
+    </script>
+</body>
+</html>
