@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
-
+<main>
     <div class="container">
         <h1>Quản Lý Sản Phẩm</h1>
 
@@ -52,37 +52,30 @@
             </table>
         </section>
     </div>
-
+</main>
     <script>
         document.getElementById('productForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Ngăn chặn form tải lại trang
+            event.preventDefault();
 
-            // 1. Thu thập dữ liệu từ Form
-            const maSP = document.getElementById('maSP').value;
             const tenSP = document.getElementById('tenSP').value;
             const giaSP = document.getElementById('giaSP').value;
             const loaiSP = document.getElementById('loaiSP').value;
             
-            // Định dạng giá tiền
+
             const formattedGia = new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
             }).format(giaSP);
 
-            // 2. Tạo một dòng mới (<tr>)
             const tableBody = document.getElementById('productTableBody');
-            const newRow = tableBody.insertRow(); // Tạo thẻ <tr> mới
+            const newRow = tableBody.insertRow(); 
 
-            // 3. Thêm các ô dữ liệu (<td>) vào dòng mới
-            newRow.insertCell().textContent = maSP;
             newRow.insertCell().textContent = tenSP;
             newRow.insertCell().textContent = formattedGia;
             newRow.insertCell().textContent = loaiSP;
 
             document.getElementById('productForm').reset();
         });
-
-       
     </script>
 </body>
 </html>
